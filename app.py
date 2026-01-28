@@ -9,15 +9,17 @@ def get_client_ip():
     return request.remote_addr
 
 @app.route("/")
+@app.route("/")
 def home():
     ip = get_client_ip()
     user_agent = request.headers.get("User-Agent")
     time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-    with open("visitors.log", "a") as f:
-        f.write(f"{time} | IP: {ip} | UA: {user_agent}\n")
+    print(f"{time} | IP: {ip} | UA: {user_agent}")
 
     return render_template("index.html")
 
+
 if __name__ == "__main__":
     app.run(debug=True)
+
